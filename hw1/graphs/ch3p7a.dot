@@ -1,0 +1,35 @@
+/* 
+<assign> -> <id> = <expr>
+<id> -> A | B | C
+<expr> -> <expr> + <term> | <term>
+<term> -> <term> * <factor> | <factor>
+<factor> -> ( <expr> ) | <id>
+*/
+
+/* A = A * (B + (C * A)) */
+digraph ch3p7a {
+	assign -> A_1;
+	assign [label="<assign>"];
+	A_1 [label="A"];
+	assign -> eq_1;
+	eq_1 [label="="];
+	assign -> expr_1;
+	expr_1 [label="A * (B + (C * A))"];
+	expr_1 -> A_2;
+	expr_1 -> op_mult;
+	expr_1 -> expr_2;
+	A_2 [label="A"];
+	op_mult [label="*"];
+	expr_2 [label="(B + (C * A))"];
+	expr_2 -> B;
+	expr_2 -> op_add;
+	op_add [label="+"];
+	expr_2 -> expr_3;
+	expr_3 [label="(C * A)"];
+	expr_3 -> C;
+	expr_3 -> op_mult2;
+	op_mult2 [label="*"];
+	expr_3 -> A_3;
+	A_3 [label="A"];
+}
+

@@ -1,0 +1,38 @@
+/* 
+<S> -> <A>
+<A> -> <A> + <A> | <id>
+<id> -> a | b | c
+*/
+
+/* a + a + c + b */
+digraph ch3p8_1 {
+
+	S -> A_1;
+	S -> op_3;
+	S -> id_1;
+	
+	A_1 -> A_2;
+
+	A_2 -> id_2;
+	A_2 -> op_1;
+	A_2 -> A_3;
+	
+	A_3 -> id_3;
+	A_3 -> op_2;
+	A_3 -> id_4;
+
+	S [label="<S>"];
+
+	A_1 [label="<A>"];
+	A_2 [label="<A>"];
+	A_3 [label="<A>"];
+
+	op_1 [label="+"];
+	op_2 [label="+"];
+	op_3 [label="+"];
+
+	id_1 [label="b"];
+	id_2 [label="a"];
+	id_3 [label="a"];
+	id_4 [label="c"];
+}
