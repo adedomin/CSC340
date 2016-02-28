@@ -1,0 +1,46 @@
+/* 
+S -> A
+A -> aAb | \Lambda
+*/
+
+/* aaaabbbb */
+digraph ch3p14_1 {
+
+	S -> A_1;
+
+	A_1 -> a_1;
+	A_1 -> A_2;
+	A_1 -> b_1;
+
+	A_2 -> a_2;
+	A_2 -> A_3;
+	A_2 -> b_2;
+
+	A_3 -> a_3;
+	A_3 -> A_4;
+	A_3 -> b_3;
+
+	A_4 -> a_4;
+	A_4 -> A_5;
+	A_4 -> b_4;
+
+	A_5 -> null;
+
+	A_1 [label="A"];
+	A_2 [label="A"];
+	A_3 [label="A"];
+	A_4 [label="A"];
+	A_5 [label="A"];
+
+	a_1 [label="a"];
+	a_2 [label="a"];
+	a_3 [label="a"];
+	a_4 [label="a"];
+
+	b_1 [label="b"];
+	b_2 [label="b"];
+	b_3 [label="b"];
+	b_4 [label="b"];
+
+	null [label="Λ"];
+}
