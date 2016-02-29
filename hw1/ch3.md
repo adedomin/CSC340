@@ -84,13 +84,26 @@ $$
 
 $$
 \begin{aligned}
-	P \implies I \\
-	I = \{count < 0 \} \\
-
+ 	            P & \implies I \\
+	        \{I\} &= (sum = (count) + (count - 1) + ... + 1) \&\& \{count >= 0\} \\
+\\
+	 \{I \&\& B\} &= (sum = (count) + (count - 1) + ... + 1) \&\& \{count >= 0\} \&\& \{count \neq 0\} \\
+\\
+	              &= (sum = (count) + (count - 1) + ... + 1) \&\& \{count > 0\} \\
+\\
+            \{P\} &= (count = count - 1) \{I\} \\
+		          &= count - 1 >= 0 \\
+                  &= count >= 1 \\
+\\
+\{I \&\& \neg B\} & \implies Q \\
+\{I \&\& \neg B\} &= (sum = count + (count - 1) + ... + 1) \&\& \{count >= 0\} \&\& \{count = 0\} \\
+		        Q &= \{sum = count + (count-1) + ... + 1\} \\
 \end{aligned}
 $$
 
 ### 12) using invarient in 28, prove partial correctness
+
+See above
 
 ### 13)
 
