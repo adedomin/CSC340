@@ -10,12 +10,8 @@ header-includes:
 
 ### 14)
 
-Such a thing is not possible since Finite State machines are not able to store any kind of state, using a stack or a recursion.
-
-below is a PDA that will do this.
-
-![figure1](graphs/ch4p0.dot)
+See figure 6.
 
 ### 15) \#3
 
-
+### 16) \#5ab

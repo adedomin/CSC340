@@ -1,0 +1,31 @@
+digraph gr {
+	{
+		node [shape=doublecircle]; 
+		start;
+		end;
+	}
+	{
+		node [label="a"]
+		a_1;
+		a_2;
+	}
+	{
+		node [label="b"];
+		b_1;
+		b_2;
+	}
+	start -> a_1 [label="a"];
+	start -> b_2 [label="b"];
+
+	a_1 -> a_1 [label="a"];
+	b_1 -> b_1 [label="b"];
+	a_1 -> b_1 [label="b"];
+	b_1 -> a_1 [label="a"];
+	b_1 -> end [label="b"];
+
+	a_2 -> a_2 [label="a"];
+	b_2 -> b_2 [label="b"];
+	b_2 -> a_2 [label="a"];
+	a_2 -> b_2 [label="b"];
+	a_2 -> end [label="a"];
+}

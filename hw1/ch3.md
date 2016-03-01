@@ -8,19 +8,17 @@ header-includes:
 	- \usepackage{mathpazo}
 ---
 
-### \#7a
+### 3) \#7a
 
-![figure1](graphs/ch3p7a.png)
+See figure 1.
 
-### \#8
+### 4) \#8
+
+See figure 2 and 3.
 
 Two possible graphs using grammar, ambiguous.
 
-![figure2](graphs/ch3p8_1.png)
-
-![figure3](graphs/ch3p8_2.png)
-
-### \#9
+### 5) \#9
 
 $$
 \begin{aligned}
@@ -33,7 +31,7 @@ $$
 \end{aligned}
 $$
 
-### \#13
+### 6) \#13
 
 $$
 \begin{aligned}
@@ -42,17 +40,36 @@ $$
 \end{aligned}
 $$
 
-### \#14
+### 7) \#14
 
-aabb
-![figure4](graphs/ch3p14_1.png)
+See figure 4 for aabb.
 
-aaaabbbb
-![figure5](graphs/ch3p14_2.png)
+See figure 5 for aaaabbbb.
 
-### \#21b
+### 8) \#21b
 
-### \#23a
+Example for loop in Ada:
+
+	for_loop:
+	for I in Integer range 1 .. 10 loop
+
+		Do_Something()
+
+	end loop for_loop;
+ 
+Operational semantics:
+ 
+	int i = 1;
+	int increment = 1;
+	int max = 11;
+	for_loop:
+	if i == max, goto out;
+	do_stuff();
+	i = i + increment;
+	goto for_loop;
+	out: 
+
+### 9) \#23a
 
 $$
 \begin{aligned}
@@ -66,7 +83,7 @@ $$
 \end{aligned}
 $$
 
-### \#24a
+### 10) \#24a
 
 $$
 \begin{aligned}
@@ -80,7 +97,7 @@ $$
 \end{aligned}
 $$
 
-### \#28
+### 11) \#28
 
 $$
 \begin{aligned}
@@ -113,16 +130,11 @@ $$
   \Sigma &= \{a,b\} \\
   \\
   L   &= \{\textsc{All strings that have different first and last letters}\} \\
-  RE  &= a(a+b)^{*}b \\
-  BNF & \\
-    S &\to A \\
-    A &\to aBb | B \\
-	B &\to aB | bB | \Lambda \\
-  \\
   L   &= \{ab,ba,aab,abb,baa,bba,.....\} \\
-  RE  &= (a+b)^{+} \\
+  RE  &= (a(a+b)^{*}b)+(b(a+b)^{*}a) \\
   BNF & \\
     S &\to A \\
-    A &\to aA | bA | \Lambda \\
+    A &\to aBb | bBa \\
+	B &\to aB | bB | \Lambda \\
 \end{aligned}
 $$

@@ -8,7 +8,7 @@ header-includes:
 	- \usepackage{mathpazo}
 ---
 
-### \#4
+### 1) \#4
 
 Some software benefits from the structure of different paradigms and language syntax.
 Other times, languages like C++ become incredibly convoluted with thousands of features.
@@ -25,10 +25,12 @@ Or some may simply need a low footprint system that is intended to manipulate ra
 
 No current language really offers a one stop solution to all these problem.
 
-### \#8
+### 2) \#8
 
   * Pros
     * Partially enforces adherence to naming style and conventions 
-	* 
+	* Increases number of names that can be used
   * Cons
     * names that have similar appearance can be wildly different objects or values.
+	* allows for confusing names of mixed cases.
+	* users must be mindful of case when referencing objects, variables and function. thus more to potentially debug.

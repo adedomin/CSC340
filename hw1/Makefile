@@ -1,7 +1,7 @@
 DOC=pandoc
 DOCFLAGS=
 DOCNAME=hw3-dedominica.pdf
-DOCOBJ=hw3.md
+DOCOBJ=ch1.md ch3.md ch4.md figures.md
 
 PACK=zip
 PACKFLAGS=-r
