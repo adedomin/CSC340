@@ -9,3 +9,7 @@
 ![#14.2](graphs/ch3p14_2.png)
 
 ![14](graphs/ch4_14.png)
+
+![#5a](graphs/ch4p5a.png)
+
+![#5b](graphs/ch4p5b.png)

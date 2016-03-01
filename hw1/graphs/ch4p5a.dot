@@ -1,0 +1,29 @@
+/* Sentential forms of aaAbb */
+/* rules: S → aAb |bBA 
+	      A → ab | aAB 
+		  B → aB | b
+ */
+digraph ch4p5a {
+	S -> a_1;
+	S -> A_1;
+	S -> b_1;
+
+	A_1 -> a_2;
+	A_1 -> A_2;
+	A_1 -> B_1;
+
+	B_1 -> b_2;
+
+	S [label="S"];
+
+	A_1 [label="A"];
+	A_2 [label="A"];
+
+	B_1 [label="B"];
+
+	a_1 [label="a"];
+	a_2 [label="a"];
+
+	b_1 [label="b"];
+	b_2 [label="b"];
+}

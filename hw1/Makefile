@@ -1,37 +1,40 @@
 CC=cc
 CFLAG=-O0 -Wall
 CLEX=lexer_hw1.l
+CLEXDIR=./lexer/
 CFILE=lexer_hw1.c
 CHEAD=lexer_hw1.h
 CNAME=lexer_hw1
 
 DOC=pandoc
 DOCFLAGS=
-DOCNAME=hw3-dedominica.pdf
+DOCNAME=hw1-dedominica.pdf
 DOCOBJ=ch1.md ch3.md ch4.md figures.md
+
+DOTGRAPHDIR=./graphs/
 
 PACK=zip
 PACKFLAGS=-r
-PACKNAME=HW3-dedominica.zip
-PACKDIR=HW3/
+PACKNAME=HW1-dedominica.zip
+PACKDIR=HW1/
 
 all: doc
 	
 lex:
-	cd lexer/; \
+	cd $(CLEXDIR); \
 	flex $(CLEX); \
 	$(CC) $(CFILE) -o $(CNAME) $(CFLAG)
 
 clean:
-	cd lexer/; \
+	cd $(CLEXDIR); \
 	rm $(CFILE) $(CHEAD)
 
 remove:
-	cd lexer/; \
+	cd $(CLEXDIR); \
 	rm $(CNAME)
 
 lex_test: lex
-	cd lexer/; \
+	cd $(CLEXDIR); \
 	./lexer_hw1 ./text_syntax/syntax.txt
 
 doc:
@@ -42,7 +45,7 @@ remove_doc:
 
 package: doc
 	mkdir $(PACKDIR)
-	cp $(DOCNAME) $(DOCOBJ) ./Makefile ./HW2/
+	cp -r $(DOCNAME) $(DOCOBJ) $(CLEXDIR) $(DOTGRAPHDIR) ./Makefile $(PACKDIR)
 	$(PACK) $(PACKFLAGS) $(PACKNAME) $(PACKDIR)
 	rm -rf $(PACKDIR)
 
