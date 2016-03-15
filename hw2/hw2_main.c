@@ -25,7 +25,8 @@ int main(int argc, char** argv) {
 #ifdef _WIN32
 	printf("\nPRESS ENTER TO EXIT\n");
 	fgetc(stdin);
-	return 0;
 #endif
+
+	return 0;
 }
 
