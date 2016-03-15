@@ -9,7 +9,14 @@ int main(int argc, char** argv) {
 	yyscan_t scanner;
 
 	yylex_init(&scanner);
+
+#ifdef _WIN32
+	FILE* synfile;
+	fopen_s(&synfile, "sample.txt", "r");
+	yyset_in(synfile, scanner);
+#else
 	yyset_in(fopen(argv[0], "r"), scanner);
+#endif
 
 	yyparse(scanner);
 

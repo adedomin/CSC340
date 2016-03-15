@@ -1,0 +1,4 @@
+if (FALSE AND TRUE)
+    A=sum * (total - 47);
+    B=(4+A)%3;
+    C=B-15;
