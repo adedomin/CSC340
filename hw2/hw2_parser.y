@@ -1,5 +1,6 @@
 %{
 
+#include "hw2_main.h"
 #include "hw2_lex.h"
 
 void yyerror(yyscan_t scanner, char const *msg);
@@ -11,7 +12,6 @@ void yyerror(yyscan_t scanner, char const *msg);
 #ifndef YY_TYPEDEF_YY_SCANNER_T
 #define YY_TYPEDEF_YY_SCANNER_T
 typedef void* yyscan_t;
-typedef int YYSTYPE;
 #endif
 
 }
@@ -88,7 +88,7 @@ expr: expr ADD_OP term
 	{ printf("EXPR: term, EXIT\n"); }
 	;
 
-term:  term MULT_OP factor 
+term: term MULT_OP factor 
 	{ printf("TERM: term MULT_OP factor, EXIT\n"); }
 	| term DIV_OP factor 
 	{ printf("TERM: term DIV_OP factor, EXIT\n"); }

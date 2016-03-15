@@ -1,3 +1,4 @@
+#include "hw2_main.h"
 #include "hw2_parser.h"
 #include "hw2_lex.h"
 
@@ -14,6 +15,10 @@ int main(int argc, char** argv) {
 
 	yylex_destroy(scanner);
 
+#ifdef _WIN32
+	printf("\nPRESS ENTER TO EXIT\n");
+	fgetc(stdin);
 	return 0;
+#endif
 }
 

@@ -1,29 +1,9 @@
 %{
  
+#include "hw2_main.h"
 #include "hw2_parser.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-//
-//#define INT_LIT 10
-//#define IDENT 11
-//#define ADD_OP 21
-//#define SUB_OP 22
-//#define MULT_OP 23
-//#define DIV_OP 24
-//#define MOD_OP 36
-//#define LEFT_PAREN 25
-//#define RIGHT_PAREN 26
-//#define IF 27
-//#define ELSE 28
-//#define OR 29
-//#define AND 30
-//#define TRUE 31
-//#define FALSE 32
-//#define NOT 33
-//#define LINE_T 34
-//#define EQUALS 35
-//
 
 %}
 
