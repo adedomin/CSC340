@@ -33,7 +33,7 @@ Chapter 9
 		a = b;
 		b = temp;
 	}
-```c
+```
 
 a. by value
 
@@ -148,8 +148,46 @@ value list[@]       swap-a swap-b swap-temp statement
 
 a. by value
 
-
+m   n   p-x p-y p-z p-a p-b stmt
+--- --- --- --- --- --- --- ----------
+2   N/A N/A N/A N/A N/A N/A m = 2
+2   1   N/A N/A N/A N/A N/A n = 1
+2   1   2   2   1   N/A N/A p(m,m,n)
+2   1   2   2   1   N/A N/A int a,b
+2   1   2   2   1   2   N/A a = x
+2   1   2   2   1   2   2   b = y
+2   1   2   2   5   2   2   z = a+b+z
+2   1   N/A N/A N/A N/A N/A return
+--- --- --- --- --- --- --- ----------
+m = 2, n = 1
 
 b. by reference
 
+m   n   p-x p-y p-z p-a p-b stmt
+--- --- --- --- --- --- --- ----------
+2   N/A N/A N/A N/A N/A N/A m = 2
+2   1   N/A N/A N/A N/A N/A n = 1
+2   1   2   2   1   N/A N/A p(m,m,n)
+2   1   2   2   1   N/A N/A int a,b
+2   1   2   2   1   2   N/A a = x
+2   1   2   2   1   2   2   b = y
+2   5   2   2   5   2   2   z = a+b+z
+2   5   N/A N/A N/A N/A N/A return
+--- --- --- --- --- --- --- ----------
+m = 2, n = 5
+
 c. by name
+
+m   n   p-x p-y p-z p-a p-b stmt
+--- --- --- --- --- --- --- ----------
+2   N/A N/A N/A N/A N/A N/A m = 2
+2   1   N/A N/A N/A N/A N/A n = 1
+2   1   2   2   1   N/A N/A p(m,m,n)
+2   1   2   2   1   N/A N/A int a,b
+2   1   2   2   1   2   N/A a = x
+2   1   2   2   1   2   2   b = y
+2   5   2   2   5   2   2   z = a+b+z
+2   5   N/A N/A N/A N/A N/A return
+--- --- --- --- --- --- --- ----------
+m = 2, n = 5
+

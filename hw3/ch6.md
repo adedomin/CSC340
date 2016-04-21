@@ -34,4 +34,25 @@ Because (*var).someval is obnoxious to type and to look at so they implemented t
 
 ### 9) Using the IEEE Floating Point Standard 754 format for 32 bit (see Figure 6.1 - (a) on page 248), show the bit string (32 bits) for the binary number "1101.10101".
 
+$$
+\begin{aligned}
+	0b1101.10101 &= 13.21 \\
+	13.21 &= (-1)^{0}\times  (1+frac)\times 2^{pow} \\
+	\frac{13.21}{2^{pow}} &= 1+frac \\
+	\frac{13.21}{2^{3}} &= 1+frac \\
+	13.21 &= 1+(0.65125)\times 2^{3} \\
+	exponent &= 3+127 \\
+	exponent_{2} &= 0b10000010
+\end{aligned}
+$$
+
+sign exponent fraction
+---- -------- -----------------------
+   0 10000010 10100110101110000101001 
+---- -------- -----------------------
+
 ### 10) Express the 16 bit 2’s complement number 1111 1111 1110 1101 in decimal format
+
+	1111 1111 1110 1101 = -19
+	0000 0000 0001 0010 + 1
+	0000 0000 0001 0011 = 2^0 + 2^1 + 2^4 = 19
