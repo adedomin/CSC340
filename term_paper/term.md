@@ -2,13 +2,13 @@
 title: Asynchronous Programming
 subtitle: Advantages and Programming Constructs
 author: Anthony DeDominic \<dedominica@my.easternct.edu\>
-abstract: 
-	- This paper will discuss Asynchronous programming paradigms, methods of writing asynchronous code, advantages of asynchronous programming and examples of asynchronous programming in use. The paper will start with language constructs like callbacks, promises, generators and common javascript libraries. Then talk about advantages of asynchronous design, such as higher throughput and easier concurrency. Later I will discuss projects that use asynchronous concepts and their synchronous counterparts; such projects like nginx vs httpd. Also talk about examples like the Seastar, Shared-nothing, server-side application framework.
+abstract: This paper will discuss Asynchronous programming paradigms, methods of writing asynchronous code, advantages of asynchronous programming and examples of asynchronous programming in use. The paper will start with language constructs like callbacks, promises, generators and common javascript libraries. Then talk about advantages of asynchronous design, such as higher throughput and easier concurrency. Later I will discuss projects that use asynchronous concepts and their synchronous counterparts; such projects like nginx vs httpd. Also talk about examples like the Seastar, Shared-nothing, server-side application framework.
 date: \today{}
 geometry: margin=3cm
 fontfamily: mathpazo
 fontsize: 10pt
 header-includes:
+	- \hyphenpenalty 10000
 	- \usepackage{fancyhdr}
 	- \pagestyle{fancy}
 	- \fancyfoot[L]{Asynchronous Programming - DeDominic}
@@ -45,7 +45,9 @@ However one of the bigger problems is it doesn't scale well with number of CPU c
 Advantages
 ----------
 
-
+As said earlier, asynchronous allows for high throughput and easy concurrency in single threaded environments.
+Their simplicity gives them an edge in performance over multi-threaded alternatives in most request and response driven tasks;
+tasks like GUIs and socket (network) servers are good examples.
 
 Disadvantages
 -------------
@@ -183,3 +185,16 @@ This happens because generators allow for arbitrary pausing and execution until 
 
 In this example, yield caused the function to pause until generator.next() is called with a value.
 When it is called, yield is given that value.
+
+Conclusion
+==========
+
+Asynchronous I/O allows for interesting solutions to hard problems.
+In many cases they are faster at servicing various random requests than other methods.
+With Node.js, it's easy to incorporate the benefits of async in the server now.
+
+Even though callbacks are fundemental to asynchronous; abstractions and features have made them more usable.
+Abstractions like promises allow for clearer chaining of callbacks thus removing one of javascript's greatest downfalls.
+
+Many tools make use of async to deliver great performance. Nginx's asynchronous design gives it great performance over other http servers.
+Single threaded irc daemons, like hybrid, make use of operating system asynchronous I/O features to handle connection sockets.
