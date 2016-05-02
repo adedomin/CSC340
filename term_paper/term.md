@@ -1,90 +1,136 @@
 ---
-title: Asynchronous Programming
-subtitle: Advantages and Programming Constructs
-author: Anthony DeDominic \<dedominica@my.easternct.edu\>
-abstract: This paper will discuss Asynchronous programming paradigms, methods of writing asynchronous code, advantages of asynchronous programming and examples of asynchronous programming in use. The paper will start with language constructs like callbacks, promises, generators and common javascript libraries. Then talk about advantages of asynchronous design, such as higher throughput and easier concurrency. Later I will discuss projects that use asynchronous concepts and their synchronous counterparts; such projects like nginx vs httpd. Also talk about examples like the Seastar, Shared-nothing, server-side application framework.
+title: Node.js and Javascript
+author: Anthony DeDominic \<<dedominica@my.easternct.edu>\>
+institute: Eastern Connecticut State University
+abstract: |
+	Javascript is one of the only ways to give users a dynamic experience on the web.
+	Though many seem to hate it, it's design allows for a efficient and unique way to handle I/O and request driven services.
+	In order to bring these benefits to software outside of the web, Node.js was made.
+	It is a framework for running javascript code in the backend.
+	This paper will focus on the benefits of javascript, talk about asynchronous I/O and compare it to other scripting languages.
 date: \today{}
+
 geometry: margin=3cm
 fontfamily: mathpazo
 fontsize: 10pt
 header-includes:
-	- \hyphenpenalty 10000
-	- \usepackage{fancyhdr}
-	- \pagestyle{fancy}
-	- \fancyfoot[L]{Asynchronous Programming - DeDominic}
-	- \fancyfoot[C]{}
-	- \fancyfoot[R]{\thepage}
-	- \twocolumn
+- \hyphenpenalty 10000
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyfoot[L]{Asynchronous Programming - DeDominic}
+- \fancyfoot[C]{}
+- \fancyfoot[R]{\thepage}
+- \twocolumn
+
+link-citations: Yes
+references:
+- id: node-docs
+  issued:
+  - year: 2016
+  title: Node.js v6.0.0 Documentation
+  URL: https://nodejs.org/api/cluster.html
+	
+- id: node-about
+  title: About Node.js
+  issued:
+  - year: 2016
+  URL: https://nodejs.org/en/about/
+	
+- id: slaks-async
+  title: Concurrency, part 1 Parallelism, Asynchrony, and Multi-threading Explained
+  author: 
+  - family: Laks
+	given: Schabse
+  issued: 
+  - year: 2014
+  URL: http://blog.slaks.net/2014-12-23/parallelism-async-threading-explained/
+
+- id: w3-serverstat
+  title: Usage of web servers broken down by ranking
+  issued:
+  - year: 2015
+  URL: http://w3techs.com/technologies/cross/web_server/ranking
+
+- id: seastar
+  title: Seastar Project
+  issued:
+  - year: 2016
+  URL: http://www.seastar-project.org/
+
+- id: pm2
+  author: Unitech
+  title: PM2
+  issued:
+  - year: 2016
+  URL: https://github.com/Unitech/pm2
 ---
 
 Introduction
 ============
 
-In this paper I will be exploring the topic of asynchronous processing in contrast to synchronous approach that is more familiar to most programmers.
+Unlike other popular scripting languages, such as python, Node.js is asynchronous by design.
+This leads to some interesting advantages.
+Primarily it means much better networking applications.
+This is because asynchronous, non-blocking, I/O design of Node.js avoids the need for conventional synchronous concurrency models [@node-about].
 
-Asynchronous methods allow for requests to be worked on concurrently, in parallel, before they finish.
-In contrast, synchronous methods require a single request to be fulfilled before work on another one can start.
-In order to have concurrent parallelism in synchronous methods requires multiple threads or processes and fine grain locking controls to pass information, join processes and other mechanisms.
-
-Synchronous is the opposite of Asynchronous. It implies some connection or dependency on other tasks.
-This means that synchronous tasks must communicate with one another using mechanisms like semaphores or signals.
+Non-blocking, asynchronous I/O, is the principle that many tasks can be started in parallel, but the caller doesn't have to sit and wait for the result.
+In contrast, synchronous, blocking I/O, require a single request to be fulfilled before work on another one can start [@slaks-async].
+To achieve concurrent parallelism in a blocking I/O system require threading and difficult to use locks.
+To control and manage these locking mechanisms can be slow as well.
 
 Writing these locking mechanisms can be challenging and hard to implement.
 In contrast, using asynchronous methods are much easier;
 In asynchronous programming, usually one needs to use simple constructs like callbacks.
-No need to worry about things like blocking locks.
-This is because tasks are not dependent on each other.
+Since Javascript, and Node.js, are single threaded, one can avoid race conditions.
 
-Advantages & Disadvantages
+
+Advantages & Disadvantages of Async
 ==========================
 
 As described in the introduction there are many advantages to asynchronous design.
-One of the biggest ones is very easy concurrency.
 However one of the bigger problems is it doesn't scale well with number of CPU cores.
+This is mainly due to the challenges of handling events.
 
 Advantages
 ----------
 
-As said earlier, asynchronous allows for high throughput and easy concurrency in single threaded environments.
-Their simplicity gives them an edge in performance over multi-threaded alternatives in most request and response driven tasks;
-tasks like GUIs and socket (network) servers are good examples.
+As described earlier, async allows for a way to handle waiting for work to be done.
+Since the caller does not wait for a result, it doesn't waste time waiting for work to be returned.
+This frees the thread that made the call to be recycled and continue working on other problems.
+When there is work to be done, the callback can then be called and processed.
+Usually using a dedicated event loop thread [@slaks-async].
+
+These benefits are immense in situations like socket driven services, such as Internet provided services like website applications.
+User requests for instance can be fulfilled in turn easily, without worrying about blocking.
+Because there is no blocking, there is no need to manage or create large collections of thread pools and locking mechanisms.
+Other software, such as Nginx, exploit this as well which is what made it the second most popular web server [@w3-serverstat].
 
 Disadvantages
 -------------
 
-One of the Biggest disadvantages with asynchronous is it isn't synchronous.
-If a task MUST have any dependencies it isn't appropriate for asynchronous.
-This isn't necessarily a problem in multiparadigm languages.
-
 Asynchronous programming isn't necessarily easy to start with.
 Certain asynchronous features, like callbacks, can lead to confusing and hard to read code.
+An example of this unreadability is the infamous "pyramid of doom" (shown below).
 
-In Use in Software
-==================
+For problems that are CPU bound, the single event loop model used for asynchronous I/O, especially in Javascript, can become unresponsive.
+An example of a CPU heavy task is a simple infinite loop like $while(true)$. The loop will complete block the event thread doing CPU work and no other event will be processed.
+In a threaded environment, a single thread can be locked by an infinite loop, but other threads can come in and do other work [@slaks-async].
+When the loop is locked up nothing can happen, since most, if not all, asynchronous languages have but one main event loop [@node-docs].
 
-Case: httpd
----------------
+The other problem is scaling.
+As described earlier, javascript and Node.js have but only one thread for handling events and processing CPU bound problems.
+Because of this, applications making use of Node.js can't easily scale to the amount of available CPU cores.
+In contrast, threaded solutions can.
 
-An example of this is the http server, Apache httpd.
-When it was first conceived, they used blocking I/O to process user requests.
-In order to allow for concurrent handling of events they started using a prefork model.
-The prefork model effectively forked a complete copy of the running httpd instance (memory and all) to service the request from start to end.
-This came with the advantages of performance, but also removed concerns of race conditions since the memory was copied.
-The disadvantages are the memory costs of running numerous copies of httpd to serve large amount of concurrent requests.
+Node.js uses libuv to try to multi-thread javascript [@node-docs].
+In order to scale it, one must consider something akin to the "share-nothing" architecture proposed by the Seastar project
+But share nothing architecture is mostly just a fancy way of saying multiple, independent, running copies of a program.
+So for the parallelism to work, applications must have some shareable state or a method to pass messages to, possibly using sockets or signaling [@seastar].
+A more javascript based solution to the problem are load balancers like PM2.
+One of PM2's features is being able to run $x$ amount of copies of a given Node.js applications.
 
-Newer process models used more complex methods to handle this problem, such as the multi-processing module, worker.
-This module are much more advanced than the prefork method.
-it used less memory by making use of shared memory, limited number of child processes and thread pools.
-However it was still very synchronous and came with performance disadvantages.
-
-In order to further enhance Apache httpd, they looked to the Nginx reverse proxy server.
-Nginx, uses an asynchronous event driven architecture in handling http requests.
-Because of this, Nginx was and still is faster than Apache httpd at serving http requests.
-In order to compete, Apache httpd created the events multi-process module.
-This module tries to add the benefits of asynchronous to httpd.
-
-Event Driven Programming Constructs
-===================================
+Writing Asynchronous Javascript
+===============================
 
 Callbacks
 ---------
@@ -198,3 +244,6 @@ Abstractions like promises allow for clearer chaining of callbacks thus removing
 
 Many tools make use of async to deliver great performance. Nginx's asynchronous design gives it great performance over other http servers.
 Single threaded irc daemons, like hybrid, make use of operating system asynchronous I/O features to handle connection sockets.
+
+Citations
+=========
