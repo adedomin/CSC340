@@ -63,6 +63,12 @@ references:
   issued:
   - year: 2016
   URL: https://github.com/Unitech/pm2
+
+- id: npm
+  title: npm Documentation
+  issued:
+  - year: 2016
+  URL: https://docs.npmjs.com/
 ---
 
 Introduction
@@ -128,6 +134,16 @@ But share nothing architecture is mostly just a fancy way of saying multiple, in
 So for the parallelism to work, applications must have some shareable state or a method to pass messages to, possibly using sockets or signaling [@seastar].
 A more javascript based solution to the problem are load balancers like PM2.
 One of PM2's features is being able to run $x$ amount of copies of a given Node.js applications.
+
+Dependency Resolution
+=====================
+
+For a scripting language, it's important to expose and make available useful ways to share and include works to and from other developers.
+To facilitate this, Node.js uses NPM, The Node Package Manager.
+It's a package manager entierly written in javascript.
+
+The biggest advantage of npm over other package managers like CPAN and pip is that it doesn't need to install libraries globally by default or require so called virtual environments or local libraries.
+NPM also makes it easy to quickly make and publish applications using a simple json object [@npm].
 
 Writing Asynchronous Javascript
 ===============================
@@ -235,15 +251,23 @@ When it is called, yield is given that value.
 Conclusion
 ==========
 
-Asynchronous I/O allows for interesting solutions to hard problems.
-In many cases they are faster at servicing various random requests than other methods.
-With Node.js, it's easy to incorporate the benefits of async in the server now.
+Javascript with the Node.js runtime allows for solving hard I/O bound problems, easily.
+In many cases they are faster at servicing these kinds of requests than synchronous, blocking, I/O.
+However, asynchronous, non-blocking, I/O usually leads to design problems that make it less useful in CPU bound problems,
+or problems that are more computational than I/O driven.
 
-Even though callbacks are fundemental to asynchronous; abstractions and features have made them more usable.
-Abstractions like promises allow for clearer chaining of callbacks thus removing one of javascript's greatest downfalls.
+NPM, the node.js package manager, makes it easy to share code with other javascript developers.
+It has advantages over other scripting language package managers.
 
-Many tools make use of async to deliver great performance. Nginx's asynchronous design gives it great performance over other http servers.
-Single threaded irc daemons, like hybrid, make use of operating system asynchronous I/O features to handle connection sockets.
+In terms of writing asynchronous code, passing lambdas, or anonymous functions, as parameters is the dominant way of doing so.
+When using lambdas as parameters, they are referred to as callbacks.
+Ultimately though, callbacks lead to problems like the pyramid of doom.
+As seen in the paper, to solve the readability problems of callbacks, concepts like promises and futures were made.
+They help by allowing for more clean and synchronous looking chaining.
+
+Overall Javascript and Node.js are definitely languages I would recommend for developers to look into.
+Its easy to use dependency and packaging mechanisms make it easy to get into.
+The design of the language also facilitates an easy way to solve many of the web and document driven problems that plague IT, today.
 
 Citations
 =========
