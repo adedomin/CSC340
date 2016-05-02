@@ -1,4 +1,11 @@
 ---
+# Term paper as required to graduate at my uni for "intermediate research paper"
+# Build by simply running the Makefile provided
+# The build requires the following dependencies:
+#    TeXLive
+#    pandoc 
+#    pandoc-citeproc
+
 title: Node.js and Javascript
 author: Anthony DeDominic \<<dedominica@my.easternct.edu>\>
 institute: Eastern Connecticut State University
@@ -8,6 +15,8 @@ abstract: |
 	In order to bring these benefits to software outside of the web, Node.js was made.
 	It is a framework for running javascript code in the backend.
 	This paper will focus on the benefits of javascript, talk about asynchronous I/O and compare it to other scripting languages.
+
+	For the latest revision of this paper, please see <https://github.com/adedomin/CSC340/tree/master/term_paper>
 date: \today{}
 
 papersize: letter
