@@ -10,6 +10,7 @@ abstract: |
 	This paper will focus on the benefits of javascript, talk about asynchronous I/O and compare it to other scripting languages.
 date: \today{}
 
+papersize: letter
 geometry: margin=3cm
 fontfamily: mathpazo
 fontsize: 10pt
@@ -17,7 +18,7 @@ header-includes:
 - \hyphenpenalty 10000
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
-- \fancyfoot[L]{Asynchronous Programming - DeDominic}
+- \fancyfoot[L]{Node.js \& Javascript - DeDominic}
 - \fancyfoot[C]{}
 - \fancyfoot[R]{\thepage}
 - \twocolumn
