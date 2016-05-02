@@ -50,7 +50,7 @@ references:
   title: Concurrency, part 1 Parallelism, Asynchrony, and Multi-threading Explained
   author: 
   - family: Laks
-	given: Schabse
+    given: Schabse
   issued: 
   - year: 2014
   URL: http://blog.slaks.net/2014-12-23/parallelism-async-threading-explained/
