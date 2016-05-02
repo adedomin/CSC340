@@ -9,6 +9,7 @@
 title: Node.js and Javascript
 author: Anthony DeDominic \<<dedominica@my.easternct.edu>\>
 institute: Eastern Connecticut State University
+date: \today{}
 abstract: |
 	Javascript is one of the only ways to give users a dynamic experience on the web.
 	Though many seem to hate it, it's design allows for a efficient and unique way to handle I/O and request driven services.
@@ -17,7 +18,6 @@ abstract: |
 	This paper will focus on the benefits of javascript, talk about asynchronous I/O and compare it to other scripting languages.
 
 	For the latest revision of this paper, please see <https://github.com/adedomin/CSC340/tree/master/term_paper>
-date: \today{}
 
 papersize: letter
 geometry: margin=3cm
@@ -39,13 +39,13 @@ references:
   - year: 2016
   title: Node.js v6.0.0 Documentation
   URL: https://nodejs.org/api/cluster.html
-	
+
 - id: node-about
   title: About Node.js
   issued:
   - year: 2016
   URL: https://nodejs.org/en/about/
-	
+
 - id: slaks-async
   title: Concurrency, part 1 Parallelism, Asynchrony, and Multi-threading Explained
   author: 
@@ -157,6 +157,9 @@ NPM also makes it easy to quickly make and publish applications using a simple j
 
 Writing Asynchronous Javascript
 ===============================
+
+Javascript as of ES6 offers a wide variety of ways to express code asynchronously.
+Below are example syntax with explainations on how to use these facilities.
 
 Callbacks
 ---------
