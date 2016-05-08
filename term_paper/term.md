@@ -7,17 +7,14 @@
 #    pandoc-citeproc
 
 title: Node.js and Javascript
-author: Anthony DeDominic \<<dedominica@my.easternct.edu>\>
-institute: Eastern Connecticut State University
-date: \today{}
+#author: Anthony DeDominic
+#date: \today{}
 abstract: |
-	Javascript is one of the only ways to give users a dynamic experience on the web.
-	Though many seem to hate it, it's design allows for a efficient and unique way to handle I/O and request driven services.
-	In order to bring these benefits to software outside of the web, Node.js was made.
-	It is a framework for running javascript code in the backend.
-	This paper will focus on the benefits of javascript, talk about asynchronous I/O and compare it to other scripting languages.
-
-	For the latest revision of this paper, please see <https://github.com/adedomin/CSC340/tree/master/term_paper>
+	*Javascript is one of the only ways to give users a dynamic experience on the web.*
+	*Though it was designed for the web, it's design allows for a efficient and unique way to handle I/O and request driven services.*
+	*In order to bring these benefits to software outside of the web, Node.js was made.*
+	*It is a framework for running javascript code in the backend.*
+	*This paper will focus on the benefits of javascript, for backend uses using Node.js, talk about asynchronous I/O and compare it to other scripting languages.*
 
 papersize: letter
 geometry: margin=3cm
@@ -31,6 +28,7 @@ header-includes:
 - \fancyfoot[C]{}
 - \fancyfoot[R]{\thepage}
 - \twocolumn
+- \author{DeDominic, Anthony\\Eastern Connecticut State University\\Willimantic, USA\\dedominica@my.easternct.edu}
 
 link-citations: Yes
 references:
@@ -68,7 +66,8 @@ references:
   URL: http://www.seastar-project.org/
 
 - id: pm2
-  author: Unitech
+  author: 
+  - family: Unitech
   title: PM2
   issued:
   - year: 2016
@@ -79,6 +78,23 @@ references:
   issued:
   - year: 2016
   URL: https://docs.npmjs.com/
+
+- id: ES6
+  title: ES6 Features
+  author:
+  - family: Engelschall
+    given: [Ralf, S.]
+  issued:
+  - year: 2016
+  URL: http://es6-features.org/#Constants
+
+- id: dwb
+  author:
+  - family: Simpson
+    given: Kyle
+  issued:
+  - year: 2014
+  URL: https://davidwalsh.name/async-generators
 ---
 
 Introduction
@@ -143,7 +159,7 @@ In order to scale it, one must consider something akin to the "share-nothing" ar
 But share nothing architecture is mostly just a fancy way of saying multiple, independent, running copies of a program.
 So for the parallelism to work, applications must have some shareable state or a method to pass messages to, possibly using sockets or signaling [@seastar].
 A more javascript based solution to the problem are load balancers like PM2.
-One of PM2's features is being able to run $x$ amount of copies of a given Node.js applications.
+One of PM2's features is being able to run $x$ amount of copies of a given Node.js applications [@pm2].
 
 Dependency Resolution
 =====================
@@ -159,7 +175,7 @@ Writing Asynchronous Javascript
 ===============================
 
 Javascript as of ES6 offers a wide variety of ways to express code asynchronously.
-Below are example syntax with explainations on how to use these facilities.
+Below are example syntax with explainations on how to use these facilities [@ES6].
 
 Callbacks
 ---------
@@ -259,7 +275,7 @@ This happens because generators allow for arbitrary pausing and execution until 
 	generator.next()
 
 In this example, yield caused the function to pause until generator.next() is called with a value.
-When it is called, yield is given that value.
+When it is called, yield is given that value [@dwb].
 
 Conclusion
 ==========
@@ -278,8 +294,8 @@ Ultimately though, callbacks lead to problems like the pyramid of doom.
 As seen in the paper, to solve the readability problems of callbacks, concepts like promises and futures were made.
 They help by allowing for more clean and synchronous looking chaining.
 
-Overall Javascript and Node.js are definitely languages I would recommend for developers to look into.
-Its easy to use dependency and packaging mechanisms make it easy to get into.
+Overall Javascript and Node.js are definitely languages I would recommend developers look into.
+The dependency and packaging mechanisms offered by the included tool, NPM, make it easy to get into.
 The design of the language also facilitates an easy way to solve many of the web and document driven problems that plague IT, today.
 
 Citations
